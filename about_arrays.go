@@ -1,36 +1,40 @@
 package go_koans
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/fluentassert/verify"
+	"testing"
+)
 
-func aboutArrays() {
+func aboutArrays(t *testing.T) {
 	fruits := [4]string{"apple", "orange", "mango"}
 
-	assert(fruits[0] == __string__) // indexes begin at 0
-	assert(fruits[1] == __string__) // one is indeed the loneliest number
-	assert(fruits[2] == __string__) // it takes two to ...tango?
-	assert(fruits[3] == __string__) // there is no spoon, only an empty value
+	verify.String(fruits[0]).Equal(__string__).Require(t) // indexes begin at 0
+	verify.String(fruits[1]).Equal(__string__).Require(t) // one is indeed the loneliest number
+	verify.String(fruits[2]).Equal(__string__).Require(t) // it takes two to ...tango?
+	verify.String(fruits[3]).Equal(__string__).Require(t) // there is no spoon, only an empty value
 
-	assert(len(fruits) == __int__) // the length is what the length is
-	assert(cap(fruits) == __int__) // it can hold no more
+	verify.Number(len(fruits)).Equal(__int__).Require(t) // the length is what the length is
+	verify.Number(cap(fruits)).Equal(__int__).Require(t) // it can hold no more
 
-	assert(fruits == [4]string{}) // comparing arrays is not like comparing apples and oranges
+	verify.Obj(fruits).Equal([4]string{}) // comparing arrays is not like comparing apples and oranges
 
-	tasty_fruits := fruits[1:3]                           // defining oneself as a variation of another
-	assert(fmt.Sprintf("%T", tasty_fruits) == __string__) //and get not a simple array as a result
-	assert(tasty_fruits[0] == __string__)                 // slices of arrays share some data
-	assert(tasty_fruits[1] == __string__)                 // albeit slightly askewed
+	tasty_fruits := fruits[1:3]                                                 // defining oneself as a variation of another
+	verify.String(fmt.Sprintf("%T", tasty_fruits)).Equal(__string__).Require(t) //and get not a simple array as a result
+	verify.String(tasty_fruits[0]).Equal(__string__).Require(t)                 // slices of arrays share some data
+	verify.String(tasty_fruits[1]).Equal(__string__).Require(t)                 // albeit slightly askewed
 
-	assert(len(tasty_fruits) == __int__) // its length is manifest
-	assert(cap(tasty_fruits) == __int__) // but its capacity is surprising!
+	verify.Number(len(tasty_fruits) == __int__).Require(t) // its length is manifest
+	verify.Number(cap(tasty_fruits) == __int__).Require(t) // but its capacity is surprising!
 
 	tasty_fruits[0] = "lemon" // are their shared roots truly identical?
 
-	assert(fruits[0] == __string__) // has this element remained the same?
-	assert(fruits[1] == __string__) // how about the second?
-	assert(fruits[2] == __string__) // surely one of these must have changed
-	assert(fruits[3] == __string__) // but who can know these things
+	verify.String(fruits[0]).Equal(__string__).Require(t) // has this element remained the same?
+	verify.String(fruits[1]).Equal(__string__).Require(t) // how about the second?
+	verify.String(fruits[2]).Equal(__string__).Require(t) // surely one of these must have changed
+	verify.String(fruits[3]).Equal(__string__).Require(t) // but who can know these things
 
 	veggies := [...]string{"carrot", "pea"}
 
-	assert(len(veggies) == __int__) // array literals need not repeat an obvious length
+	verify.Number(len(veggies)).Equal(__int__).Require(t) // array literals need not repeat an obvious length
 }

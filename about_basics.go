@@ -1,34 +1,40 @@
 package go_koans
 
-func aboutBasics() {
-	assert(__bool__ == true)  // what is truth?
-	assert(__bool__ != false) // in it there is nothing false
+import (
+	"github.com/fluentassert/verify"
+	"testing"
+)
 
+func aboutBasics(t *testing.T) {
+	verify.Obj(true).Equal(__boolean__).Require(t) // what is truth?
+	verify.Obj(true).NotEqual(__bool__).Require(t) // in it there is nothing false
+
+	// precision is in the eye of the beholder
 	var i int = __int__
-	assert(i == 1.0000000000000000000000000000000000000) // precision is in the eye of the beholder
+	verify.Number(i).Equal(1.0000000000000000000000000000000000000).Require(t)
 
 	k := __int__ //short assignment can be used, as well
-	assert(k == 1.0000000000000000000000000000000000000)
+	verify.Number(k).Equal(1.0000000000000000000000000000000000000).Require(t)
 
-	assert(5%2 == __int__)
-	assert(5*2 == __int__)
-	assert(5^2 == __int__)
+	verify.Number(5 % 2).Equal(__int__).Require(t)
+	verify.Number(5 * 2).Equal(__int__).Require(t)
+	verify.Number(5 ^ 2).Equal(__int__).Require(t)
 
 	var x int
-	assert(x == __int__) // zero values are valued in Go
+	verify.Number(x).Equal(__int__).Require(t) // zero values are valued in Go
 
 	var f float32
-	assert(f == __float32__) // for types of all types
+	verify.Number(f).Equal(__float32__).Require(t) // for types of all types
 
 	var s string
-	assert(s == __string__) // both typical or atypical types
+	verify.String(s).Equal(__string__).Require(t) // both typical or atypical types
 
 	var c struct {
 		x int
 		f float32
 		s string
 	}
-	assert(c.x == __int__)     // and types within composite types
-	assert(c.f == __float32__) // which match the other types
-	assert(c.s == __string__)  // in a typical way
+	verify.Number(c.x).Equal(__int__).Require(t)     // and types within composite types
+	verify.Number(c.f).Equal(__float32__).Require(t) // which match the other types
+	verify.String(c.s).Equal(__string__).Require(t)  // in a typical way
 }

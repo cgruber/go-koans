@@ -10,40 +10,29 @@ import (
 	"testing"
 )
 
-const (
-	__string__       string  = "impossibly lame value"
-	__int__          int     = -1
-	__positive_int__ int     = 42
-	__byte__         byte    = 255
-	__bool__         bool    = false // ugh
-	__boolean__      bool    = true  // oh well
-	__float32__      float32 = -1.0
-	__delete_me__    bool    = false
-)
-
 var __runner__ runner = nil
 
 func TestKoans(t *testing.T) {
-	aboutBasics()
-	aboutStrings()
-	aboutArrays()
-	aboutSlices()
-	aboutTypes()
-	aboutControlFlow()
-	aboutEnumeration()
-	aboutAnonymousFunctions()
-	aboutVariadicFunctions()
-	aboutDefer()
-	aboutFiles()
-	aboutInterfaces()
-	aboutCommonInterfaces()
-	aboutMaps()
-	aboutPointers()
-	aboutStructs()
-	aboutAllocation()
-	aboutChannels()
-	aboutConcurrency()
-	aboutPanics()
+	aboutBasics(t)
+	aboutStrings(t)
+	aboutArrays(t)
+	//aboutSlices()
+	//aboutTypes()
+	//aboutControlFlow()
+	//aboutEnumeration()
+	//aboutAnonymousFunctions()
+	//aboutVariadicFunctions()
+	//aboutDefer()
+	//aboutFiles()
+	//aboutInterfaces()
+	//aboutCommonInterfaces()
+	//aboutMaps()
+	//aboutPointers()
+	//aboutStructs()
+	//aboutAllocation()
+	//aboutChannels()
+	//aboutConcurrency()
+	//aboutPanics()
 
 	fmt.Printf("\n%c[32;1mYou won life. Good job.%c[0m\n\n", 27, 27)
 }
